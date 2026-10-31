@@ -830,3 +830,9 @@ if (aboutDeveloperBtn && aboutDeveloperModal && closeAboutDeveloperBtn) {
     if (event.key === "Escape") closeAboutDeveloper();
   });
 }
+
+if (window.Telegram && window.Telegram.WebApp) {
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand(); // Opens the web app in full view
+}
