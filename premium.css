@@ -1,0 +1,707 @@
+/* Qalu Premium UI layer — visual upgrades that preserve the original app behavior. */
+:root {
+  --bg-color: #f8f5ed;
+  --surface-1: #fffdf8;
+  --surface-2: #f0eadc;
+  --text-main: #252821;
+  --text-muted: #74766b;
+  --border-color: #e4ddce;
+  --accent: #b28b3e;
+  --accent-glow: rgba(198, 164, 92, 0.15);
+  --verse-hover: #f5f0e4;
+  --app-font: "Noto Sans Ethiopic", "Nyala", sans-serif;
+  --font-size: 20px;
+  --line-height: 2.05;
+  --hl-yellow: rgba(255, 226, 105, 0.48);
+  --hl-green: rgba(113, 181, 129, 0.32);
+  --hl-blue: rgba(116, 171, 214, 0.3);
+  --hl-pink: rgba(221, 137, 171, 0.3);
+}
+body.theme-light {
+  --bg-color: #f8f5ed;
+  --surface-1: #fffdf8;
+  --surface-2: #f0eadc;
+  --text-main: #252821;
+  --text-muted: #74766b;
+  --border-color: #e4ddce;
+  --accent: #a98235;
+  --accent-glow: rgba(198, 164, 92, 0.17);
+  --verse-hover: #f4efe3;
+}
+body.theme-dark {
+  --bg-color: #101a14;
+  --surface-1: #17251c;
+  --surface-2: #203328;
+  --text-main: #f4f0e5;
+  --text-muted: #b2b8aa;
+  --border-color: #304638;
+  --accent: #d6b66d;
+  --accent-glow: rgba(214, 182, 109, 0.14);
+  --verse-hover: #1b2b21;
+  --hl-yellow: rgba(255, 220, 94, 0.24);
+  --hl-green: rgba(95, 173, 112, 0.24);
+  --hl-blue: rgba(80, 152, 210, 0.24);
+  --hl-pink: rgba(211, 102, 153, 0.24);
+}
+body.theme-sepia {
+  --bg-color: #f2e8d4;
+  --surface-1: #fbf2df;
+  --surface-2: #e9d9ba;
+  --text-main: #4a3821;
+  --text-muted: #806d51;
+  --border-color: #d9c6a3;
+  --accent: #986a2f;
+  --accent-glow: rgba(152, 106, 47, 0.14);
+  --verse-hover: #eee0c5;
+}
+* {
+  scrollbar-color: var(--border-color) transparent;
+}
+body {
+  background: var(--bg-color);
+  color: var(--text-main);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+.progress-bar {
+  height: 4px;
+  background: linear-gradient(90deg, #123b2a, var(--accent));
+}
+.app-layout {
+  grid-template-columns: 270px 112px minmax(0, 1fr);
+}
+.col-books,
+.col-chapters {
+  background: var(--surface-1);
+  border-color: var(--border-color);
+}
+.col-books {
+  box-shadow: 5px 0 24px rgba(35, 44, 30, 0.025);
+}
+.panel-header {
+  padding: 18px 16px 14px;
+  background: var(--surface-1);
+  border-color: var(--border-color);
+}
+.panel-header h2,
+.panel-header h3 {
+  color: var(--text-main);
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+.side-heading-icon {
+  color: var(--accent);
+  margin-right: 5px;
+}
+.panel-header input,
+#globalSearchInput,
+.modal-header input,
+.setting-item select {
+  background: var(--bg-color);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+.panel-header input {
+  padding: 11px 12px;
+}
+.panel-header input:focus,
+#globalSearchInput:focus,
+.modal-header input:focus,
+.setting-item select:focus {
+  outline: 2px solid var(--accent-glow);
+  border-color: var(--accent);
+}
+.scroll-list li {
+  border: 0;
+  border-radius: 10px;
+  margin: 3px 8px;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+}
+.scroll-list li:hover {
+  background: var(--verse-hover);
+  color: var(--text-main);
+}
+.scroll-list li.active {
+  background: var(--accent-glow);
+  color: var(--text-main);
+  box-shadow: inset 3px 0 var(--accent);
+  font-weight: 700;
+}
+.chapter-chip {
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background: var(--surface-1);
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+.chapter-chip:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+.chapter-chip.active {
+  background: #123b2a;
+  color: #fff9e9;
+  border-color: #123b2a;
+  box-shadow: 0 5px 12px rgba(18, 59, 42, 0.16);
+}
+.col-reader {
+  min-width: 0;
+  background: var(--bg-color);
+}
+.brand-strip {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 26px 12px;
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border-color);
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 13px;
+  color: #fff7e2;
+  font-family: "Noto Serif Ethiopic", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  background: linear-gradient(145deg, #1c563d, #102f22);
+  box-shadow: 0 5px 14px rgba(18, 59, 42, 0.18);
+}
+.brand-copy {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.brand-copy strong {
+  font-family: "Noto Serif Ethiopic", serif;
+  font-size: 1.08rem;
+  letter-spacing: 0.02em;
+}
+.brand-copy span {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  margin-top: 3px;
+}
+.brand-promise {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+.reader-header {
+  padding: 13px 26px;
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border-color);
+  gap: 14px;
+}
+.header-left,
+.action-tools {
+  gap: 8px;
+}
+.reading-meta h1 {
+  font-family: "Noto Serif Ethiopic", serif;
+  font-size: 1.3rem;
+  letter-spacing: -0.015em;
+}
+.badge {
+  margin-left: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-glow);
+  border-color: transparent;
+  color: var(--text-main);
+  font-size: 0.75rem;
+}
+.tool-btn {
+  border: 1px solid var(--border-color);
+  border-radius: 11px;
+  padding: 8px 11px;
+  background: var(--surface-1);
+  box-shadow: 0 2px 5px rgba(30, 38, 28, 0.025);
+}
+.tool-btn:hover {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  transform: translateY(-1px);
+}
+.search-trigger-btn {
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: var(--bg-color);
+  border-color: var(--border-color);
+}
+.daily-card {
+  position: relative;
+  overflow: hidden;
+  margin: 22px 28px 0;
+  padding: 20px 23px;
+  border: 1px solid rgba(198, 164, 92, 0.38);
+  border-left: 0;
+  border-radius: 18px;
+  background:
+    linear-gradient(115deg, rgba(18, 59, 42, 0.07), rgba(198, 164, 92, 0.1)),
+    var(--surface-1);
+  box-shadow: 0 10px 28px rgba(43, 48, 31, 0.045);
+  gap: 9px;
+}
+.daily-card::before {
+  content: "“";
+  position: absolute;
+  right: 20px;
+  bottom: -52px;
+  font-family: Georgia, serif;
+  font-size: 12rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.075;
+  pointer-events: none;
+}
+.daily-meta,
+.daily-text {
+  position: relative;
+  z-index: 1;
+}
+.daily-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.daily-tag::before {
+  content: "✦";
+  font-size: 0.9rem;
+}
+.daily-ref {
+  margin-left: auto;
+  margin-right: 10px;
+  font-weight: 600;
+}
+.daily-text {
+  font-family: "Noto Serif Ethiopic", serif;
+  font-size: 1.12rem;
+  line-height: 1.9;
+  max-width: 1000px;
+}
+.close-card-btn {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.3rem;
+}
+.close-card-btn:hover {
+  background: var(--accent-glow);
+  color: var(--text-main);
+}
+.scripture-container {
+  padding: 26px 28px 60px;
+  scroll-behavior: smooth;
+}
+.scripture-pane {
+  padding-bottom: 30px;
+}
+.scripture-pane.layout-verse .verse-item {
+  padding: 12px 14px;
+  border-radius: 12px;
+  margin-bottom: 6px;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+.scripture-pane.layout-verse .verse-item:hover {
+  background: var(--verse-hover);
+}
+.verse-num {
+  color: var(--accent);
+  font-weight: 700;
+  min-width: 30px;
+  font-size: 0.78em;
+  padding-top: 4px;
+}
+.verse-text {
+  font-family: "Noto Serif Ethiopic", "Noto Sans Ethiopic", serif;
+}
+.fav-icon {
+  color: var(--text-muted);
+  border-radius: 7px;
+  padding: 0 4px;
+  opacity: 0.55;
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+.verse-item:hover .fav-icon,
+.fav-icon.active {
+  opacity: 1;
+}
+.fav-icon:hover {
+  transform: scale(1.12);
+}
+.scripture-pane.layout-verse .verse-item.drop-cap .verse-text::first-letter {
+  color: var(--accent);
+}
+.floating-palette {
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  background: var(--surface-1);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+  padding: 8px;
+}
+.palette-btn {
+  border-radius: 9px;
+}
+.modal-overlay {
+  padding: 18px;
+  backdrop-filter: blur(8px);
+  background: rgba(10, 20, 13, 0.55);
+}
+.modal-card {
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  background: var(--surface-1);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+  padding: 22px;
+}
+.modal-header {
+  border-color: var(--border-color);
+}
+.modal-header h3 {
+  font-family: "Noto Serif Ethiopic", serif;
+}
+.close-btn {
+  border-radius: 10px;
+}
+.setting-item {
+  border-color: var(--border-color);
+}
+.theme-btn,
+.layout-btn,
+.width-btn,
+.sub-btn {
+  border-radius: 10px;
+}
+.theme-btn.active,
+.layout-btn.active,
+.width-btn.active {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  color: var(--text-main);
+}
+.toast {
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--surface-1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (max-width: 1100px) {
+  .app-layout {
+    grid-template-columns: 235px 96px minmax(0, 1fr);
+  }
+  .brand-promise {
+    font-size: 0.7rem;
+  }
+  .reader-header {
+    padding-inline: 16px;
+  }
+  .header-center {
+    max-width: 260px;
+  }
+}
+@media (max-width: 880px) {
+  .app-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .brand-strip {
+    padding: 10px 14px;
+  }
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    border-radius: 11px;
+  }
+  .brand-copy strong {
+    font-size: 1rem;
+  }
+  .brand-copy span {
+    font-size: 0.67rem;
+  }
+  .brand-promise {
+    display: none;
+  }
+  .reader-header {
+    padding: 10px 12px;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .header-left {
+    gap: 6px;
+    min-width: 0;
+  }
+  .reading-meta h1 {
+    font-size: 1rem;
+    max-width: 38vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .badge {
+    margin-left: 3px;
+    padding: 3px 7px;
+    font-size: 0.68rem;
+  }
+  .action-tools {
+    gap: 4px;
+    margin-left: auto;
+  }
+  .tool-btn {
+    padding: 7px 9px;
+  }
+  .daily-card {
+    margin: 14px 12px 0;
+    padding: 16px;
+    border-radius: 15px;
+  }
+  .daily-text {
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+  .scripture-container {
+    padding: 17px 10px 38px;
+  }
+  .scripture-pane.layout-verse .verse-item {
+    padding: 10px 7px;
+  }
+  .verse-num {
+    min-width: 25px;
+  }
+  .modal-card {
+    padding: 17px;
+    border-radius: 17px;
+  }
+}
+@media (max-width: 420px) {
+  .reading-meta h1 {
+    max-width: 31vw;
+  }
+  .action-tools {
+    gap: 3px;
+  }
+  .tool-btn {
+    padding: 7px 8px;
+    font-size: 0.82rem;
+  }
+  .daily-ref {
+    font-size: 0.72rem;
+  }
+  .daily-tag {
+    font-size: 0.7rem;
+  }
+}
+
+/* About Developer — Qalu */
+.about-developer-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin-left: 12px;
+  padding: 9px 13px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--surface-1);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+.about-developer-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+.developer-card {
+  width: min(560px, 100%);
+  max-height: min(88vh, 760px);
+  overflow-y: auto;
+}
+.developer-profile {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  padding: 22px 0 18px;
+  border-bottom: 1px solid var(--border-color);
+}
+.developer-avatar {
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff8e8;
+  font:
+    700 1.55rem/1 Arial,
+    sans-serif;
+  letter-spacing: 1px;
+  background: linear-gradient(145deg, #1c563d, #102f22);
+  border: 3px solid var(--accent);
+  box-shadow:
+    0 0 0 6px var(--accent-glow),
+    0 9px 24px rgba(0, 0, 0, 0.13);
+}
+.developer-eyebrow {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  margin-bottom: 5px;
+}
+.developer-profile h2 {
+  color: var(--text-main);
+  font-size: 1.45rem;
+  margin: 0 0 4px;
+}
+.developer-role {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+.developer-message {
+  padding: 18px 0 8px;
+  color: var(--text-main);
+  line-height: 1.8;
+  font-size: 0.93rem;
+}
+.developer-message p {
+  margin: 0 0 13px;
+}
+.developer-message strong {
+  color: var(--accent);
+}
+.developer-quote {
+  padding: 12px 15px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  background: var(--accent-glow);
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+.developer-contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--surface-2);
+  font-size: 0.86rem;
+}
+.developer-contact span {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+.developer-contact a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.developer-contact a:hover {
+  text-decoration: underline;
+}
+.developer-credit {
+  margin: 17px 0 0;
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 0.72rem;
+}
+@media (max-width: 760px) {
+  .brand-strip {
+    flex-wrap: wrap;
+    padding: 10px 14px;
+  }
+  .brand-promise {
+    display: none;
+  }
+  .about-developer-btn {
+    margin-left: auto;
+    padding: 8px 11px;
+  }
+  .developer-profile {
+    align-items: flex-start;
+  }
+}
+@media (max-width: 420px) {
+  .about-developer-btn {
+    font-size: 0.7rem;
+  }
+  .developer-avatar {
+    width: 62px;
+    height: 62px;
+    flex-basis: 62px;
+  }
+  .developer-profile h2 {
+    font-size: 1.2rem;
+  }
+  .developer-contact {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+/* Floating trigger button */
+.floating-note-btn {
+  position: fixed;
+  bottom: 85px;
+  right: 24px;
+  background: var(--accent, #b28b3e);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 18px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.floating-note-btn.active {
+  background: #f85149; /* Red indicator when note placement mode is on */
+}
