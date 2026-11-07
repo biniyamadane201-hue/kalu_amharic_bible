@@ -14,7 +14,7 @@
     <meta name="theme-color" content="#123b2a" />
     <link rel="manifest" href="manifest.json" />
     <link rel="icon" href="assets/qalu-icon.svg" type="image/svg+xml" />
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <!-- Google Ethiopic Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -137,6 +137,24 @@
             >
               🔍
             </button>
+
+            <!-- Language / Mode Selector -->
+            <div
+              class="view-mode-selector"
+              role="group"
+              aria-label="Mode Selector"
+            >
+              <button class="mode-btn active" type="button" data-mode="am">
+                አማርኛ
+              </button>
+              <button class="mode-btn" type="button" data-mode="kjv">
+                KJV
+              </button>
+              <button class="mode-btn" type="button" data-mode="parallel">
+                Parallel
+              </button>
+            </div>
+
             <button id="prevChapBtn" class="tool-btn nav-btn" title="ቀዳሚ ምዕራፍ ">
               ‹
             </button>
@@ -153,7 +171,7 @@
             <button
               id="openSettingsBtn"
               class="tool-btn icon-btn"
-              title="ማስትካከያ"
+              title="ማስተካከያ"
             >
               ⚙️
             </button>
@@ -437,7 +455,12 @@
         </div>
         <div class="developer-contact">
           <span>Telegram</span>
-          <a href="t.me/@binon3rd">t.me/@binon3rd</a>
+          <a
+            href="https://t.me/binon3rd"
+            target="_blank"
+            rel="noopener noreferrer"
+            >t.me/binon3rd</a
+          >
         </div>
         <p class="developer-credit">
           Designed &amp; developed with care by Biniyam Adane · © 2026
