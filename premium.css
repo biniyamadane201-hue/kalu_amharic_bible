@@ -705,3 +705,55 @@ body {
 .floating-note-btn.active {
   background: #f85149; /* Red indicator when note placement mode is on */
 }
+/* Mode Switcher Buttons */
+.view-mode-selector {
+  display: inline-flex;
+  background: var(--surface-2, #1e2430);
+  border: 1px solid var(--border-color, #2b3340);
+  border-radius: 8px;
+  padding: 2px;
+  gap: 3px;
+}
+
+.mode-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #8b949e);
+  padding: 5px 11px;
+  font-size: 0.8rem;
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+  color: var(--text-main, #fff);
+}
+
+.mode-btn.active {
+  background: var(--accent, #b28b3e);
+  color: #fff !important;
+}
+
+/* Parallel View */
+.parallel-row {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.parallel-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .parallel-cols {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
